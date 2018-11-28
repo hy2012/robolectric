@@ -88,7 +88,7 @@ public class ShadowActivity extends ShadowContextThemeWrapper {
     try {
       activityInfo = application.getPackageManager().getActivityInfo(new ComponentName(application.getPackageName(), realActivity.getClass().getName()), PackageManager.GET_ACTIVITIES | PackageManager.GET_META_DATA);
     } catch (NameNotFoundException e) {
-      throw new RuntimeException();
+      throw new RuntimeException(e);
     }
 
     CharSequence activityTitle = activityInfo.loadLabel(baseContext.getPackageManager());

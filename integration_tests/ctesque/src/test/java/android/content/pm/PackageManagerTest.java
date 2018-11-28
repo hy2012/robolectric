@@ -63,10 +63,6 @@ public final class PackageManagerTest {
 
   @Test
   public void getPackageInfo() throws Exception {
-    if (inRobolectric()) {
-      // Doesn't work properly yet
-      return;
-    }
     PackageInfo info =
         pm.getPackageInfo(
             context.getPackageName(), MATCH_DISABLED_COMPONENTS | GET_ACTIVITIES | GET_SERVICES);
@@ -88,10 +84,6 @@ public final class PackageManagerTest {
 
   @Test
   public void getPackageInfo_noFlagsGetNoComponents() throws Exception {
-    if (inRobolectric()) {
-      // Doesn't work properly yet
-      return;
-    }
     PackageInfo info = pm.getPackageInfo(context.getPackageName(), 0);
     assertThat(info.activities).isNull();
     assertThat(info.services).isNull();
@@ -99,10 +91,6 @@ public final class PackageManagerTest {
 
   @Test
   public void getPackageInfo_skipsDisabledComponents() throws Exception {
-    if (inRobolectric()) {
-      // Doesn't work properly yet
-      return;
-    }
     PackageInfo info = pm.getPackageInfo(context.getPackageName(), GET_ACTIVITIES);
 
     assertThat(info.activities).hasLength(1);
@@ -146,10 +134,6 @@ public final class PackageManagerTest {
 
   @Test
   public void getCompoent_disabledComponent_doesntInclude() throws Exception {
-    if (inRobolectric()) {
-      // Doesn't work properly yet
-      return;
-    }
     ComponentName disabledActivityName =
         new ComponentName(context, "org.robolectric.DisabledTestActivity");
 
@@ -173,10 +157,6 @@ public final class PackageManagerTest {
   @Test
   public void getPackageInfo_programmaticallyDisabledComponent_noFlags_notReturned()
       throws Exception {
-    if (inRobolectric()) {
-      // Doesn't work properly yet
-      return;
-    }
     ComponentName activityName = new ComponentName(context, "org.robolectric.TestActivity");
     pm.setComponentEnabledSetting(activityName, COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
 
@@ -216,10 +196,6 @@ public final class PackageManagerTest {
   @Config(maxSdk = 23)
   @SdkSuppress(maxSdkVersion = 23)
   public void getPackageInfo_disabledAplication_stillReturned_below24() throws Exception {
-    if (inRobolectric()) {
-      // Doesn't work properly yet
-      return;
-    }
     pm.setApplicationEnabledSetting(
         context.getPackageName(), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
 
@@ -243,10 +219,6 @@ public final class PackageManagerTest {
   @Config(minSdk = 24)
   @SdkSuppress(minSdkVersion = 24)
   public void getPackageInfo_disabledAplication_stillReturned_after24() throws Exception {
-    if (inRobolectric()) {
-      // Doesn't work properly yet
-      return;
-    }
     pm.setApplicationEnabledSetting(
         context.getPackageName(), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
 
@@ -263,10 +235,6 @@ public final class PackageManagerTest {
 
   @Test
   public void getPackageInfo_disabledAplication_withFlags_returnedEverything() throws Exception {
-    if (inRobolectric()) {
-      // Doesn't work properly yet
-      return;
-    }
     pm.setApplicationEnabledSetting(
         context.getPackageName(), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
 
