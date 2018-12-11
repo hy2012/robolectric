@@ -315,6 +315,18 @@ public class ShadowWebView extends ShadowViewGroup {
   }
 
   @Implementation
+  protected void goBackOrForward(int steps) {
+    if (steps >= 0) {
+      // TODO: Handle forward navigation.
+      return;
+    }
+
+    while (steps++ < 0) {
+      goBack();
+    }
+  }
+
+  @Implementation
   protected WebBackForwardList copyBackForwardList() {
     return new BackForwardList(history);
   }
@@ -398,7 +410,7 @@ public class ShadowWebView extends ShadowViewGroup {
 
   @Resetter
   public static void reset() {
-     packageInfo = null;
+    packageInfo = null;
   }
 
   public static void setWebContentsDebuggingEnabled(boolean enabled) {}
